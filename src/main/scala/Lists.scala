@@ -51,5 +51,20 @@ object Lists {
     }
   }
 
+  // P4 implemented with Scala built in functions
+  def lengthBuiltIn[A](list: List[A]): Int = {
+    list.length
+  }
+
+  // P4 using pattern matching and recursion, increment size count as we traverse through the List
+  def length[A](list: List[A]): Int = {
+    def loop(elements: List[A], size: Int): Int = {
+      elements match {
+        case Nil => size
+        case _ :: tail => loop(tail, size + 1)
+      }
+    }
+    loop(list, 0)
+  }
 
 }
