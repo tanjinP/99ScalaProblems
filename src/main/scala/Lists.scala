@@ -67,4 +67,17 @@ object Lists {
     loop(list, 0)
   }
 
+  // P5 implemented with Scala built in functions
+  def reverseBuiltIn[A](list: List[A]): List[A] = {
+    list.reverse
+  }
+
+  // P5 implemented with pattern marching and recursion
+  def reverse[A](list: List[A]): List[A] = {
+    list match {
+      case Nil => Nil
+      case h :: tail => reverse(tail) :+ h
+    }
+  }
+
 }
