@@ -80,4 +80,15 @@ object Lists {
     }
   }
 
+  // P6 implemented with Scala built in functions
+  def isPalindromeBuiltIn[A](list: List[A]): Boolean = {
+    list == list.reverse
+  }
+
+  // P6 implemented using answer from P5
+  def isPalindrome[A](list: List[A]): Boolean = {
+    val reversedList = reverse(list)
+    list == reversedList
+  }
+
 }
