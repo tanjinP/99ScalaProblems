@@ -99,4 +99,17 @@ object Lists {
     }
   }
 
+  // P8 implemented with Scala built in functions
+  def compressBuiltIn[A](list: List[A]): List[A] = {
+    list.distinct
+  }
+
+  // P8 implemented using foldLeft
+  def compress[A](list: List[A]): List[A] = {
+    list.foldLeft(List.empty[A])((compressed, a) =>
+      if(compressed.contains(a)) compressed
+      else compressed :+ a
+    )
+  }
+
 }
