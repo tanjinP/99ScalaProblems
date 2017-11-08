@@ -91,4 +91,12 @@ object Lists {
     list == reversedList
   }
 
+  // P7 implemented using recursion to flatten out the List (returns List[Any])
+  def flatten[A](list: List[A]): List[Any] = {
+    list.flatMap {
+      case innerList: List[_] => flatten(innerList)
+      case standalone: A => List(standalone)
+    }
+  }
+
 }
