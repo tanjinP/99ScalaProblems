@@ -27,4 +27,8 @@ object ListsSpecification extends Properties("Lists") {
     val palindromFromBuiltIn = l == l.reverse
     palindromFromBuiltIn == Lists.isPalindrome(l)
   }
+
+  property("P8: compress") = forAll { l: List[Int] =>
+    l.distinct == Lists.compress(l)
+  }
 }
