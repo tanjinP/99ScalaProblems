@@ -22,4 +22,9 @@ object ListsSpecification extends Properties("Lists") {
   property("P5: reverse") = forAll { l: List[Int] =>
     l.reverse == Lists.reverse(l)
   }
+
+  property("P6: isPalindrome") = forAll { l: List[Char] =>
+    val palindromFromBuiltIn = l == l.reverse
+    palindromFromBuiltIn == Lists.isPalindrome(l)
+  }
 }
