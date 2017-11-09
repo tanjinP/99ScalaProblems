@@ -18,4 +18,8 @@ object ListsSpecification extends Properties("Lists") {
   property("P4: length") = forAll { l: List[Int] =>
     l.size == Lists.length(l)
   }
+
+  property("P5: reverse") = forAll { l: List[Int] =>
+    l.reverse == Lists.reverse(l)
+  }
 }
