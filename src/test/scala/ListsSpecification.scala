@@ -14,4 +14,8 @@ object ListsSpecification extends Properties("Lists") {
   property("P3: nth") = forAll { (i: Int, l: List[Int]) =>
     (i < l.length && i >= 0 && l.nonEmpty) ==> (l(i) == Lists.nth(i, l))
   }
+
+  property("P4: length") = forAll { l: List[Int] =>
+    l.size == Lists.length(l)
+  }
 }
