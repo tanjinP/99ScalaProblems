@@ -114,7 +114,7 @@ object Lists {
 
   // P9 implemented with Scala built in functions (using groupBy to produce a map causes order to be lost)
   def packBuiltIn[A](list: List[A]): List[List[A]] = {
-    list.groupBy(a => a).values.toList
+    list.groupBy(identity).values.toList
   }
 
   def pack[A](list: List[A]): List[List[A]] = {
