@@ -28,7 +28,11 @@ object ListsSpecification extends Properties("Lists") {
     palindromFromBuiltIn == Lists.isPalindrome(l)
   }
 
+  // TODO test for P7
+
   property("P8: compress") = forAll { l: List[Int] =>
     l.distinct == Lists.compress(l)
   }
+
+  // TODO test for P9
 }

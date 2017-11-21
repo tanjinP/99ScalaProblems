@@ -118,7 +118,12 @@ object Lists {
   }
 
   def pack[A](list: List[A]): List[List[A]] = {
-    ???
+    if(list.isEmpty) List(List.empty)
+    else {
+      val (packed, next) = list.span(_ == list.head)
+      if (next == Nil) List(packed)
+      else packed :: pack(next)
+    }
   }
 
 }
