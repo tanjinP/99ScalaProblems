@@ -129,4 +129,10 @@ object Lists {
     }
   }
 
+  // P10 implemented with result of existing builtIn and mapping over each inner list to produce tuple
+  def encodeBuiltIn[A](list: List[A]): List[(Int, A)] = {
+    packBuiltIn(list)
+      .map(l => (l.size, l.head))
+  }
+
 }
