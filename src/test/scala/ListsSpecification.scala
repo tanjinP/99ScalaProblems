@@ -24,8 +24,8 @@ object ListsSpecification extends Properties("Lists") {
   }
 
   property("P6: isPalindrome") = forAll { l: List[Char] =>
-    val palindromFromBuiltIn = l == l.reverse
-    palindromFromBuiltIn == Lists.isPalindrome(l)
+    val palindromeFromBuiltIn = l == l.reverse
+    palindromeFromBuiltIn == Lists.isPalindrome(l)
   }
 
   // TODO test for P7
