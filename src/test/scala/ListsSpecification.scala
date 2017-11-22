@@ -34,5 +34,7 @@ object ListsSpecification extends Properties("Lists") {
     l.distinct == Lists.compress(l)
   }
 
-  // TODO test for P9
+  property("P9: pack") = forAll { l: List[Int] =>
+    l.nonEmpty ==> (Lists.packBuiltIn(l) exists Lists.pack(l).contains)
+  }
 }

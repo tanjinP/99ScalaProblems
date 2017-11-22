@@ -114,13 +114,16 @@ object Lists {
 
   // P9 implemented with Scala built in functions (using groupBy to produce a map causes order to be lost)
   def packBuiltIn[A](list: List[A]): List[List[A]] = {
-    list.groupBy(identity).values.toList
+    list.groupBy(identity)
+      .values
+      .toList
   }
 
+  // P9 implemented with recursion and partition
   def pack[A](list: List[A]): List[List[A]] = {
     if(list.isEmpty) List(List.empty)
     else {
-      val (packed, next) = list.span(_ == list.head)
+      val (packed, next) = list.partition(_ == list.head)
       if (next == Nil) List(packed)
       else packed :: pack(next)
     }
