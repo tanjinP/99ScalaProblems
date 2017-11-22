@@ -135,4 +135,10 @@ object Lists {
       .map(l => (l.size, l.head))
   }
 
+  // P10 same solution as built in, only creating def for sake of separate defs for easier testing calls
+  def encode[A](list: List[A]): List[(Int, A)] = {
+    pack(list)
+      .map(l => (l.length, l.head))
+  }
+
 }

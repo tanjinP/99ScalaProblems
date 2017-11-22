@@ -37,4 +37,8 @@ object ListsSpecification extends Properties("Lists") {
   property("P9: pack") = forAll { l: List[Int] =>
     l.nonEmpty ==> (Lists.packBuiltIn(l) exists Lists.pack(l).contains)
   }
+
+  property("P10: encode") = forAll { l: List[Int] =>
+    l.nonEmpty ==> (Lists.encodeBuiltIn(l) exists Lists.encode(l).contains)
+  }
 }
