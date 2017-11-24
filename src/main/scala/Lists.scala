@@ -141,4 +141,17 @@ object Lists {
       .map(l => (l.length, l.head))
   }
 
+  // P11 implemented with built in, simple map over the encoded list of tuples
+  def encodeModifiedBuiltIn[A](list: List[A]): List[Any] = {
+    encodeBuiltIn(list).map(t => if(t._1 == 1) t._2 else t)
+  }
+
+  // P11
+  def encodeModified[A](list: List[A]): List[Any] = {
+    encode(list).map { case(frequency, element) =>
+        if(frequency == 1) element
+        else (frequency, element)
+    }
+  }
+
 }
