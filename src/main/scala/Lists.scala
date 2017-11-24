@@ -154,4 +154,10 @@ object Lists {
     }
   }
 
+  // P12 implemented with built in, utilizing List.fill function
+  def decodeBuiltIn[A](list: List[(Int, A)]): List[A] = {
+    list.flatMap { case(freq, a) =>
+        List.fill(freq)(a)
+    }
+  }
 }
