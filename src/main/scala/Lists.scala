@@ -146,7 +146,7 @@ object Lists {
     encodeBuiltIn(list).map(t => if(t._1 == 1) t._2 else t)
   }
 
-  // P11
+  // P11 implemented same as above with better named lambda variables
   def encodeModified[A](list: List[A]): List[Any] = {
     encode(list).map { case(frequency, element) =>
         if(frequency == 1) element
