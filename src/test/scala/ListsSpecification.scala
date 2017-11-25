@@ -45,4 +45,8 @@ object ListsSpecification extends Properties("Lists") {
   property("P11: encodeModified") = forAll { l: List[Int] =>
     l.nonEmpty ==> (Lists.encodeModifiedBuiltIn(l) exists Lists.encodeModified(l).contains)
   }
+
+  property("P12: decode") = forAll { l: List[(Int, Char)] =>
+    l.nonEmpty ==> (Lists.decodeBuiltIn(l) == Lists.decode(l))
+  }
 }
