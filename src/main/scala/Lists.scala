@@ -160,4 +160,18 @@ object Lists {
         List.fill(freq)(a)
     }
   }
+
+  // P12
+  def decode[A](list: List[(Int, A)]): List[A] = {
+    list.flatMap { case(freq, a) =>
+        if(freq == 1) List(a)
+        else {
+          var as = List.empty[A]
+          for (i <- 0 until freq) {
+            as = as :+ a
+          }
+          as
+        }
+    }
+  }
 }
