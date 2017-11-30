@@ -61,4 +61,8 @@ object ListsSpecification extends Properties("Lists") {
   property("P13: encodeDirect") = forAll { l: List[Char] =>
     l.nonEmpty ==> (Lists.encodeDirectBuiltIn(l) exists Lists.encodeDirect(l).contains)
   }
+
+  property("P14: duplicate") = forAll { l: List[Char] =>
+    l.nonEmpty ==> (Lists.duplicate(l).size == 2 * l.size)
+  }
 }
