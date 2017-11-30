@@ -161,17 +161,14 @@ object Lists {
     }
   }
 
-  // P12
+  // P12 creating a List via flatMap which is populated based on the frequency of the element to be decoded
   def decode[A](list: List[(Int, A)]): List[A] = {
     list.flatMap { case(freq, a) =>
-        if(freq == 1) List(a)
-        else {
-          var as = List.empty[A]
-          for (i <- 0 until freq) {
-            as = as :+ a
-          }
-          as
-        }
+      var as = List.empty[A]
+      for (_ <- 0 until freq) {
+        as = as :+ a
+      }
+      as
     }
   }
 }
