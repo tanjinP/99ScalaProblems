@@ -183,4 +183,20 @@ object Lists {
       }
     }
   }
+
+  // P13 using foreach and populating the tupleList based on whether or not each item is in there already, will
+  // append appropriately once tupleList is populated
+  def encodeDirect[A](list: List[A]): List[(Int, A)] = {
+    var tupleList: List[(Int, A)] = List.empty
+    list.foreach { a =>
+      if(tupleList.isEmpty) tupleList = tupleList :+ (1, a)
+      else {
+        tupleList = tupleList.map { case(freq, element) =>
+          if(element == a) (freq + 1, element)
+          else (freq, element)
+        }
+      }
+    }
+    tupleList
+  }
 }
