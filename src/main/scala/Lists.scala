@@ -199,4 +199,9 @@ object Lists {
     }
     tupleList
   }
+
+  // P14
+  def duplicate[A](list: List[A]): List[A] = {
+    list.flatMap(a => List(a, a))
+  }
 }
