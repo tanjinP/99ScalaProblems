@@ -57,4 +57,8 @@ object ListsSpecification extends Properties("Lists") {
   property("P12: decode") = forAll(intCharList) { l: List[(Int, Char)] =>
     l.nonEmpty ==> (Lists.decodeBuiltIn(l) == Lists.decode(l))
   }
+
+  property("P13: encodeDirect") = forAll { l: List[Char] =>
+    l.nonEmpty ==> (Lists.encodeDirectBuiltIn(l) exists Lists.encodeDirect(l).contains)
+  }
 }
