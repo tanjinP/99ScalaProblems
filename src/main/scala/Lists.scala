@@ -171,4 +171,16 @@ object Lists {
       as
     }
   }
+
+  // P13 using foldLeft to traverse to look into intermediate tuple List. Then either append number or add new element
+  def encodeDirectBuiltIn[A](list: List[A]): List[(Int, A)] = {
+    list.foldLeft(List.empty[(Int, A)]) { case(tupleList, element) =>
+      if(tupleList.exists(_._2 == element)) {
+        val frequency = tupleList.find(_._2 == element).map(_._1).get
+        tupleList.filterNot(_._2 == element) :+ (frequency + 1 -> element)  // removing entry and adding updated one
+      } else {
+        tupleList :+ (1, element)
+      }
+    }
+  }
 }
