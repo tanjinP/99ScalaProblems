@@ -1,5 +1,5 @@
-import org.scalacheck.Properties
-import org.scalacheck.Prop.{forAll, BooleanOperators}
+import org.scalacheck.{Gen, Properties}
+import org.scalacheck.Prop.{BooleanOperators, forAll}
 
 object ListsSpecification extends Properties("Lists") {
 
@@ -46,7 +46,15 @@ object ListsSpecification extends Properties("Lists") {
     l.nonEmpty ==> (Lists.encodeModifiedBuiltIn(l) exists Lists.encodeModified(l).contains)
   }
 
-  property("P12: decode") = forAll { l: List[(Int, Char)] =>
+  // used for P12
+  val intCharList: Gen[List[(Int, Char)]] = Gen.containerOf[List, (Int, Char)]{
+    for {
+      int <- Gen.choose(1, 100)
+      char <- Gen.alphaChar
+    } yield (int, char)
+  }
+
+  property("P12: decode") = forAll(intCharList) { l: List[(Int, Char)] =>
     l.nonEmpty ==> (Lists.decodeBuiltIn(l) == Lists.decode(l))
   }
 }
