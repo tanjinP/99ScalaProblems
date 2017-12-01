@@ -200,7 +200,7 @@ object Lists {
     tupleList
   }
 
-  // P14
+  // P14 traverse through the list and produce 2 of each iterator via a List, flatten the whole thing at the end
   def duplicate[A](list: List[A]): List[A] = {
     list.flatMap(a => List(a, a))
   }
