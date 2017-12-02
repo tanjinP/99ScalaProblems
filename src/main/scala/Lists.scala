@@ -221,4 +221,12 @@ object Lists {
       subList
     }
   }
+
+  // P16 using zip with index to keep track of each index then flatMap with empty or List containing element based on position
+  def dropBuiltIn[A](n: Int, list: List[A]): List[A] = {
+    list.zipWithIndex.flatMap { case(a, index) =>
+        if((index + 1) % n == 0) List.empty
+        else List(a)
+    }
+  }
 }
