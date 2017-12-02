@@ -242,4 +242,9 @@ object Lists {
     }
     loop(1, list)
   }
+
+  // P17 utilizing built in that does exactly what is asked
+  def splitBuiltIn[A](splitPoint: Int, list: List[A]): (List[A], List[A]) = {
+    list.splitAt(splitPoint)
+  }
 }
