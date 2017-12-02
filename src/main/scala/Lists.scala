@@ -1,3 +1,4 @@
+import scala.collection.mutable.ListBuffer
 
 /**
   * Contains all problems relative to Lists, P01-P28
@@ -208,5 +209,16 @@ object Lists {
   // P15 using simple List.fill that creates a sublist that contains specified amount of duplicates
   def duplicateNBuiltIn[A](n: Int, list: List[A]): List[A] = {
     list.flatMap(a => List.fill(n)(a))
+  }
+
+  // P15 flatmap and creating intermediate list with a simple loop that populates with simple for loop
+  def duplicateN[A](n: Int, list: List[A]): List[A] = {
+    list.flatMap {a =>
+      var subList: ListBuffer[A] = ListBuffer.empty
+      for(_ <- 0 until n) {
+        subList = subList :+ a
+      }
+      subList
+    }
   }
 }
