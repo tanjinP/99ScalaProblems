@@ -35,15 +35,15 @@ object ListsSpecification extends Properties("Lists") {
   }
 
   property("P9: pack") = forAll { l: List[Int] =>
-    l.nonEmpty ==> (Lists.packBuiltIn(l) exists Lists.pack(l).contains)
+    l.nonEmpty ==> (Lists.packBuiltIn(l) forall Lists.pack(l).contains)
   }
 
   property("P10: encode") = forAll { l: List[Int] =>
-    l.nonEmpty ==> (Lists.encodeBuiltIn(l) exists Lists.encode(l).contains)
+    l.nonEmpty ==> (Lists.encodeBuiltIn(l) forall Lists.encode(l).contains)
   }
 
   property("P11: encodeModified") = forAll { l: List[Int] =>
-    l.nonEmpty ==> (Lists.encodeModifiedBuiltIn(l) exists Lists.encodeModified(l).contains)
+    l.nonEmpty ==> (Lists.encodeModifiedBuiltIn(l) forall Lists.encodeModified(l).contains)
   }
 
   // used for P12
