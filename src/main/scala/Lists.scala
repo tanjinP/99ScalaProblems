@@ -229,4 +229,17 @@ object Lists {
       else List(a)
     }
   }
+
+  // P16 utilizing recursion based that is looped for each position, only tail goes through recursed function if the head
+  // is found to satisfy predicate
+  def drop[A](n: Int, list: List[A]): List[A] = {
+    def loop(currentPosition: Int, l: List[A]): List[A] = {
+      l match {
+        case Nil => Nil
+        case _ :: tail if currentPosition % n == 0 => loop(currentPosition + 1, tail)
+        case _ => loop(currentPosition + 1, l)
+      }
+    }
+    loop(1, list)
+  }
 }
