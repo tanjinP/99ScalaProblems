@@ -247,4 +247,19 @@ object Lists {
   def splitBuiltIn[A](splitPoint: Int, list: List[A]): (List[A], List[A]) = {
     list.splitAt(splitPoint)
   }
+
+  // P17 2 sets of traversals through list, first the split point, then from the split point
+  def split[A](splitPoint: Int, list: List[A]): (List[A], List[A]) = {
+    var firstBuffer: ListBuffer[A] = ListBuffer.empty
+    var secondBuffer: ListBuffer[A] = ListBuffer.empty
+
+    for (i <- 0 until splitPoint) {
+      firstBuffer = firstBuffer :+ list(i)
+    }
+    for (j <- splitPoint until list.size) {
+      secondBuffer = secondBuffer :+ list(j)
+    }
+
+    (firstBuffer.toList, secondBuffer.toList)
+  }
 }
