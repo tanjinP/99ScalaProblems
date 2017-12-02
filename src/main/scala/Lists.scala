@@ -204,4 +204,9 @@ object Lists {
   def duplicate[A](list: List[A]): List[A] = {
     list.flatMap(a => List(a, a))
   }
+
+  // P15 using simple List.fill that creates a sublist that contains specified amount of duplicates
+  def duplicateNBuiltIn[A](n: Int, list: List[A]): List[A] = {
+    list.flatMap(a => List.fill(n)(a))
+  }
 }
