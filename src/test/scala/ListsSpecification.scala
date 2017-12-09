@@ -58,11 +58,23 @@ object ListsSpecification extends Properties("Lists") {
     l.nonEmpty ==> (Lists.decodeBuiltIn(l) == Lists.decode(l))
   }
 
-  property("P13: encodeDirect") = forAll { l: List[Char] =>
-    l.nonEmpty ==> (Lists.encodeDirectBuiltIn(l) exists Lists.encodeDirect(l).contains)
+  property("P13: encodeDirect") = forAll { l: List[Char] => // TODO need to pass this test
+    l.nonEmpty ==> (Lists.encodeDirectBuiltIn(l) forall Lists.encodeDirect(l).contains)
   }
 
   property("P14: duplicate") = forAll { l: List[Char] =>
     l.nonEmpty ==> (Lists.duplicate(l).size == 2 * l.size)
+  }
+
+  property("P15: duplicateN") = forAll { (n: Int, l: List[String]) =>
+    (n > 0 && l.nonEmpty) ==> (Lists.duplicateNBuiltIn(n, l) == Lists.duplicateN(n, l))
+  }
+
+  property("P16: drop") = forAll { (n: Int, l: List[Int]) =>
+    (n > 0 && n <= l.length && l.nonEmpty) ==> (Lists.dropBuiltIn(n, l) forall Lists.drop(n, l).contains)
+  }
+
+  property("P17: split") = forAll { (splitPoint: Int, l: List[Char]) =>
+    (splitPoint > 0 && splitPoint <= l.size && l.nonEmpty) ==> (Lists.splitBuiltIn(splitPoint, l) == Lists.split(splitPoint, l))
   }
 }
