@@ -220,54 +220,53 @@ object Lists {
       }
       subList
     }
+  }
 
-    // P16 using zip with index to keep track of each index then flatMap with empty or List containing element based on position
-    def dropBuiltIn[A](n: Int, list: List[A]): List[A] = {
-      list.zipWithIndex.flatMap { case (a, index) =>
-        if ((index + 1) % n == 0) List.empty
-        else List(a)
+  // P16 using zip with index to keep track of each index then flatMap with empty or List containing element based on position
+  def dropBuiltIn[A](n: Int, list: List[A]): List[A] = {
+    list.zipWithIndex.flatMap { case(a, index) =>
+      if((index + 1) % n == 0) List.empty
+      else List(a)
+    }
+  }
+
+  // P16 utilizing recursion based that is looped for each position, only tail goes through recursed function if the head
+  // is found to satisfy predicate
+  def drop[A](n: Int, list: List[A]): List[A] = {
+    def loop(currentPosition: Int, l: List[A]): List[A] = {
+      l match {
+        case Nil => Nil
+        case _ :: tail if currentPosition % n == 0 => loop(currentPosition + 1, tail)
+        case _ => loop(currentPosition + 1, l)
       }
     }
+    loop(1, list)
+  }
 
-    // P16 utilizing recursion based that is looped for each position, only tail goes through recursed function if the head
-    // is found to satisfy predicate
-    def drop[A](n: Int, list: List[A]): List[A] = {
-      def loop(currentPosition: Int, l: List[A]): List[A] = {
-        l match {
-          case Nil => Nil
-          case _ :: tail if currentPosition % n == 0 => loop(currentPosition + 1, tail)
-          case _ => loop(currentPosition + 1, l)
-        }
-      }
+  // P17 utilizing built in that does exactly what is asked
+  def splitBuiltIn[A](splitPoint: Int, list: List[A]): (List[A], List[A]) = {
+    list.splitAt(splitPoint)
+  }
 
-      loop(1, list)
+  // P17 2 sets of traversals through list, first the split point, then from the split point
+  def split[A](splitPoint: Int, list: List[A]): (List[A], List[A]) = {
+    var firstBuffer: ListBuffer[A] = ListBuffer.empty
+    var secondBuffer: ListBuffer[A] = ListBuffer.empty
+
+    for (i <- 0 until splitPoint) {
+      firstBuffer = firstBuffer :+ list(i)
+    }
+    for (j <- splitPoint until list.size) {
+      secondBuffer = secondBuffer :+ list(j)
     }
 
-    // P17 utilizing built in that does exactly what is asked
-    def splitBuiltIn[A](splitPoint: Int, list: List[A]): (List[A], List[A]) = {
-      list.splitAt(splitPoint)
-    }
+    (firstBuffer.toList, secondBuffer.toList)
+  }
 
-    // P17 2 sets of traversals through list, first the split point, then from the split point
-    def split[A](splitPoint: Int, list: List[A]): (List[A], List[A]) = {
-      var firstBuffer: ListBuffer[A] = ListBuffer.empty
-      var secondBuffer: ListBuffer[A] = ListBuffer.empty
-
-      for (i <- 0 until splitPoint) {
-        firstBuffer = firstBuffer :+ list(i)
-      }
-      for (j <- splitPoint until list.size) {
-        secondBuffer = secondBuffer :+ list(j)
-      }
-
-      (firstBuffer.toList, secondBuffer.toList)
-    }
-
-    // P18
-    def slice[A](i: Int, k: Int, list: List[A]): List[A] = {
-      list.zipWithIndex
-        .dropWhile { case (_, index) => index <= i && index >= k }
-        .map(_._1)
-    }
+  // P18
+  def slice[A](i: Int, k: Int, list: List[A]): List[A] = {
+    list.zipWithIndex
+      .dropWhile { case (_, index) => index <= i && index >= k }
+      .map(_._1)
   }
 }
